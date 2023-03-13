@@ -1,0 +1,120 @@
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Header styling */
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+  }
+  
+  header h1 {
+    margin: 0;
+  }
+  
+  /* Quiz container styling */
+  #quiz-container {
+    margin: 20px auto;
+    max-width: 600px;
+    text-align: center;
+  }
+  
+  #quiz-container.hide {
+    display: none;
+  }
+  
+  /* Question and choices styling */
+  #question {
+    font-size: 24px;
+    margin: 20px 0;
+  }
+  
+  #choices button {
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 5px;
+    color: #333;
+    display: block;
+    font-size: 18px;
+    margin: 10px auto;
+    padding: 10px;
+    width: 80%;
+  }
+  
+  #choices button:hover {
+    background-color: #ccc;
+    cursor: pointer;
+  }
+  
+  /* Timer and message styling */
+  #timer {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  #message {
+    color: #f00;
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  /* Save score container styling */
+  #save-score-container {
+    display: none;
+    margin: 20px auto;
+    max-width: 600px;
+    text-align: center;
+  }
+  
+  #save-score-container.hide {
+    display: none;
+  }
+  
+  #save-score-form label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  
+  #save-score-form input[type="text"] {
+    font-size: 18px;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  #save-score-form button {
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+    margin: 10px auto;
+    padding: 10px 20px;
+  }
+  
+  #save-score-form button:hover {
+    background-color: #444;
+    cursor: pointer;
+  }
+  
+  #high-scores-container {
+    margin-top: 30px;
+  }
+  
+  #high-scores-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  #high-scores-list li {
+    margin-bottom: 5px;
+  }
+  
+  #high-scores-list li span {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
