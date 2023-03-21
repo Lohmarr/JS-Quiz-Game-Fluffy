@@ -1,23 +1,23 @@
-// Define the quiz questions and answers
+// Quiz questions and answers
 const questions = [
     {
-      question: "What is the capital of France?",
-      choices: ["Paris", "London", "Berlin", "Madrid"],
-      answer: "Paris"
+      question: "Which of the following is a data type in JavaScript?",
+      choices: ['[A] String', '[B] Object', '[C] Array', '[D] All of the above'],
+      answer: "[D] All of the above"
     },
     {
-      question: "What is the tallest mountain in the world?",
-      choices: ["K2", "Mount Everest", "Denali", "Mount Kilimanjaro"],
-      answer: "Mount Everest"
+      question: "Which of the following is a correct way to define a function in JavaScript?",
+      choices: ['[A] function myFunction() { }', "[B] var myFunction = function() { }", "[C] Both A and B", "[D] None of the above"],
+      answer: "[B] var myFunction = function() { }"
     },
     {
-      question: "What is the largest country by area?",
-      choices: ["United States", "Russia", "Canada", "China"],
-      answer: "Russia"
+      question: "Which of the following is a method to remove the last element from an array in JavaScript?",
+      choices: ["[A] pop()", "[B] shift()", "[C] slice()", "[D] splice()"],
+      answer: "[A] pop()"
     }
   ];
   
-  // Define the variables we'll need
+  // Variables we'll need
   let currentQuestionIndex = 0;
   let time = questions.length * 15;
   let timerId;
