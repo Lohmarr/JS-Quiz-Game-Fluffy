@@ -1,28 +1,19 @@
-/* General styling */
-body {
-    font-family: Arial, sans-serif;
-  }
-  
-  /* Header styling */
-  header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-  }
-  
-  header h1 {
-    margin: 0;
-  }
-  
-  /* Quiz container styling */
+/* General Styling */
+.hide {
+  display: none;
+}
+
+h1, h2, #start-container {
+  display: flex;
+  justify-content: center;
+}
+
+/* Quiz container styling */
+
   #quiz-container {
     margin: 20px auto;
     max-width: 600px;
     text-align: center;
-  }
-  
-  #quiz-container.hide {
-    display: none;
   }
   
   /* Question and choices styling */
@@ -32,10 +23,6 @@ body {
   }
   
   #choices button {
-    background-color: #f0f0f0;
-    border: none;
-    border-radius: 5px;
-    color: #333;
     display: block;
     font-size: 18px;
     margin: 10px auto;
@@ -43,8 +30,7 @@ body {
     width: 80%;
   }
   
-  #choices button:hover {
-    background-color: #ccc;
+  button:hover {
     cursor: pointer;
   }
   
@@ -62,21 +48,16 @@ body {
   
   /* Save score container styling */
   #save-score-container {
-    display: none;
     margin: 20px auto;
     max-width: 600px;
     text-align: center;
-  }
-  
-  #save-score-container.hide {
-    display: none;
   }
   
   #save-score-form label {
     display: block;
     font-size: 18px;
     margin-bottom: 10px;
-    text-align: left;
+    text-align: center;
   }
   
   #save-score-form input[type="text"] {
@@ -86,18 +67,9 @@ body {
   }
   
   #save-score-form button {
-    background-color: #333;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
     font-size: 18px;
     margin: 10px auto;
     padding: 10px 20px;
-  }
-  
-  #save-score-form button:hover {
-    background-color: #444;
-    cursor: pointer;
   }
   
   #high-scores-container {
@@ -107,6 +79,7 @@ body {
   #high-scores-list {
     list-style: none;
     padding: 0;
+    border: whitesmoke solid 3px;
   }
   
   #high-scores-list li {

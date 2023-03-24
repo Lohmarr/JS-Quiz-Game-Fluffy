@@ -2,32 +2,31 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Quiz</title>
+    <title>JS Quiz</title>
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
   </head>
   <body>
-    <h1>Quiz</h1>
+    <h1>Javascript Quiz</h1>
     <div id="quiz-container" class="hide">
       <p>Time remaining: <span id="timer"></span></p>
       <p id="question"></p>
       <div id="choices"></div>
       <p id="message"></p>
-      <button id="save-score-button" class="hide">Save Score</button>
     </div>
     <div id="start-container">
       <button id="start-button">Start Quiz</button>
     </div>
     <div id="save-score-container" class="hide">
       <h2>Your score:</h2>
-      <p>You completed the quiz in <span id="score"></span> seconds.</p>
+      <p>You completed the quiz with a score of <span id="score"></span>!</p>
       <form id="save-score-form">
         <label for="initials">Enter your initials:</label>
         <input type="text" id="initials" name="initials" maxlength="3">
         <button type="submit" id="save-score-submit">Save</button>
       </form>
     </div>
-    <div id="high-scores-container" class="hide">
+    <div id="high-scores-container">
         <h2>High Scores</h2>
         <ol id="high-scores-list"></ol>
       </div>
