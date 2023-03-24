@@ -1,190 +1,183 @@
 // Quiz questions and answers
-const questions = [
-    {
-      question: "Which of the following is a data type in JavaScript?",
-      choices: ['[A] String', '[B] Object', '[C] Array', '[D] All of the above'],
-      answer: "[D] All of the above"
-    },
-    {
-      question: "Which of the following is a correct way to define a function in JavaScript?",
-      choices: ['[A] function myFunction() { }', "[B] var myFunction = function() { }", "[C] Both A and B", "[D] None of the above"],
-      answer: "[B] var myFunction = function() { }"
-    },
-    {
-      question: "Which of the following is a method to remove the last element from an array in JavaScript?",
-      choices: ["[A] pop()", "[B] shift()", "[C] slice()", "[D] splice()"],
-      answer: "[A] pop()"
-    }
-  ];
-  
-  // Variables we'll need
-  let currentQuestionIndex = 0;
-  let time = questions.length * 15;
-  let timerId;
-  
-  // Get references to the HTML elements we'll need to update
-  const startButton = document.querySelector("#start-button");
-  const quizContainer = document.querySelector("#quiz-container");
-  const questionElement = document.querySelector("#question");
-  const choicesElement = document.querySelector("#choices");
-  const timerElement = document.querySelector("#timer");
-  const messageElement = document.querySelector("#message");
-  const initialsInput = document.querySelector("#initials");
-  const saveScoreButton = document.querySelector("#save-score");
-  
-  // Define a function to start the quiz
-  function startQuiz() {
-    // Hide the start button
-    startButton.classList.add("hide");
-  
-    // Show the quiz container
-    quizContainer.classList.remove("hide");
-  
-    // Start the timer
-    timerId = setInterval(updateTimer, 1000);
-  
-    // Display the first question
-    showQuestion();
-  }
-  
-  // Define a function to display a question
-  function showQuestion() {
-    // Get the current question
-    const question = questions[currentQuestionIndex];
-  
-    // Update the question text
-    questionElement.textContent = question.question;
-  
-    // Remove any existing choices
-    choicesElement.innerHTML = "";
-  
-    // Add the new choices
-    question.choices.forEach(choice => {
-      const choiceButton = document.createElement("button");
-      choiceButton.textContent = choice;
-      choiceButton.addEventListener("click", handleAnswer);
-      choicesElement.appendChild(choiceButton);
-    });
-  }
-  
-  // Define a function to handle a user's answer to a question
-  function handleAnswer(event) {
-    // Get the user's answer
-    const selectedChoice = event.target.textContent;
-  
-    // Get the correct answer
-    const question = questions[currentQuestionIndex];
-    const correctAnswer = question.answer;
-  
-    // Check if the user's answer is correct
-    if (selectedChoice === correctAnswer) {
-      // Display a message indicating the answer is correct
-      messageElement.textContent = "Correct!";
-    } else {
-      // Display a message indicating the answer is incorrect
-      messageElement.textContent = "Incorrect!";
-  
-      // Subtract time from the clock
-      time -= 10;
-      if (time < 0) {
-        time = 0;
-      }
-    }
-  
-    // Move to the next question
-    currentQuestionIndex++;
+const myQuestions = [
+  {
+    question: "Which of the following is a data type in JavaScript?",
+    choices: ["[A] String", "[B] Object", "[C] Array", "[D] All of the above"],
+    answer: "[D] All of the above",
+  },
+  {
+    question:
+      "Which of the following is a correct way to define a function in JavaScript?",
+    choices: [
+      "[A] function myFunction() { }",
+      "[B] var myFunction = function() { }",
+      "[C] Both A and B",
+      "[D] None of the above",
+    ],
+    answer: "[B] var myFunction = function() { }",
+  },
+  {
+    question:
+      "Which of the following is a method to remove the last element from an array in JavaScript?",
+    choices: ["[A] pop()", "[B] shift()", "[C] slice()", "[D] splice()"],
+    answer: "[A] pop()",
+  },
+  {
+    question:
+      "What is the difference between == and === operators in JavaScript?",
+    choices: [
+      "[A] == and === are interchangeable and produce the same results",
+      "[B] == compares both values and types, while === compares only values",
+      "[C] == compares only values, while === compares both values and types",
+      "[D] == and === are both logical operators and are not used for comparison",
+    ],
+    answer:
+      "[C] == compares only values, while === compares both values and types",
+  },
+  {
+    question:
+      "Which of the following is used to add a comment in JavaScript code?",
+    choices: ["[A] //", "[B] #", "[C] ;", "[D] /"],
+    answer: "[A] //",
+  },
+];
 
-    // Check if we've reached the end of the quiz
-    if (currentQuestionIndex === questions.length) {
-          endQuiz();
-    } else {
-          showQuestion();
-    }
+// Variables we'll need
+let currentQuestionIndex = 0;
+let time = myQuestions.length * 15;
+const timerInterval = 1000;
+
+// HTML references
+const startButton = document.querySelector("#start-button");
+const quizContainer = document.querySelector("#quiz-container");
+const questionEl = document.querySelector("#question");
+const choicesEl = document.querySelector("#choices");
+const timerEl = document.querySelector("#timer");
+const messageEl = document.querySelector("#message");
+const initialsInput = document.querySelector("#initials");
+const saveScoreButton = document.querySelector("#save-score-submit");
+const highScores = document.querySelector("#high-scores-list");
+const saveScoreContainer = document.querySelector("#save-score-container");
+const scoreEl = document.querySelector("#score");
+const highScoresContainer = document.querySelector("#high-scores-container");
+const highScoresList = document.querySelector("#high-scores-list");
+
+// Start quiz
+function startQuiz() {
+  startButton.classList.add("hide");
+
+  quizContainer.classList.remove("hide");
+
+  timerId = setInterval(updateTimer, timerInterval);
+
+  showQuestion();
+}
+
+// Update timer
+function updateTimer() {
+  time--;
+  if (time < 0) {
+    time = 0;
   }
-  
-  // Define a function to update the timer
-  function updateTimer() {
-    // Update the time remaining
-    time--;
+  timerEl.textContent = time;
+
+  if (time === 0) {
+    endQuiz();
+  }
+}
+
+// Display question
+function showQuestion() {
+  const question = myQuestions[currentQuestionIndex];
+
+  questionEl.textContent = question.question;
+
+  choicesEl.innerHTML = null;
+
+  question.choices.forEach((choice) => {
+    const choiceButton = document.createElement("button");
+
+    choiceButton.textContent = choice;
+    choiceButton.addEventListener("click", handleAnswer);
+    choicesEl.appendChild(choiceButton);
+  });
+}
+
+// Handle answer
+function handleAnswer(event) {
+  const selectedChoice = event.target.textContent;
+
+  const question = myQuestions[currentQuestionIndex];
+  const correctAnswer = question.answer;
+
+  if (selectedChoice === correctAnswer) {
+    messageEl.textContent = "Correct!";
+  } else {
+    messageEl.textContent = "Incorrect! Time has been reduced!";
+
+    time -= 10;
     if (time < 0) {
       time = 0;
     }
-    timerElement.textContent = time;
-  
-    // Check if we've run out of time
-    if (time === 0) {
-      endQuiz();
-    }
   }
 
-  // Define a function to end the quiz
+  currentQuestionIndex++;
+
+  if (currentQuestionIndex === myQuestions.length) {
+    endQuiz();
+  } else {
+    showQuestion();
+  }
+}
+
+// End quiz
 function endQuiz() {
-    // Stop the timer
-    clearInterval(timerId);
-    
-    // Hide the quiz container
-    quizContainer.classList.add("hide");
-    
-    // Show the form to save the user's initials and score
-    const scoreElement = document.querySelector("#score");
-    scoreElement.textContent = time;
-    const saveScoreContainer = document.querySelector("#save-score-container");
-    saveScoreContainer.classList.remove("hide");
-    
-    // Display the high scores
-    const highScoresContainer = document.querySelector("#high-scores-container");
-    highScoresContainer.classList.remove("hide");
-    
-    // Get the existing high scores or create an empty array
-    const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
-    
-    // Sort the high scores by score, highest to lowest, and take the top 10
-    const topScores = highScores.sort((a, b) => b.score - a.score).slice(0, 10);
-    
-    // Display the top scores in the high scores list
-    const highScoresList = document.querySelector("#high-scores-list");
-    topScores.forEach((score, index) => {
-      const li = document.createElement("li");
-      li.innerHTML = `${index + 1}. <span>${score.initials}</span> - ${score.score}`;
-      highScoresList.appendChild(li);
-    });
+  clearInterval(timerId);
+
+  scoreEl.textContent = time
+
+  saveScoreContainer.classList.remove("hide");
+  quizContainer.classList.add("hide");
+}
+
+// Save score
+function saveScore(event) {
+  event.preventDefault();
+
+  const initials = initialsInput.value.trim();
+  const score = time;
+
+  if (initials === "") {
+    alert("Please enter your initials.");
+    return;
   }
 
-// Define a function to save the user's score
-function saveScore(event) {
-event.preventDefault();
+  JSON.parse(localStorage.setItem("highScores", initials, score)) || [];
 
-// Get the user's initials
-const initials = initialsInput.value.trim();
+  localStorage.stringify(("highScores", JSON.stringify(highScores)));
 
-// Make sure the user entered their initials
-if (initials === "") {
-alert("Please enter your initials.");
-return;
+  showHighScores();
 }
 
-// Create an object to represent the score
-const score = {
-initials: initials,
-score: time
-};
+// Show High Scores
+function showHighScores() {
+  highScoresContainer.classList.remove("hide");
+  saveScoreContainer.classList.add("hide");
 
-// Get the existing high scores or create an empty array
-const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+  let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
-// Add the new score to the high scores array
-highScores.push(score);
+  highScoresList.innerHTML = "";
 
-// Sort the high scores by score, highest to lowest
-highScores.sort((a, b) => b.score - a.score);
+  highScores.sort((a, b) => b.score - a.score);
 
-// Store the high scores in local storage
-localStorage.setItem("highScores", JSON.stringify(highScores));
-
-// Redirect to the high scores page
-window.location.href = "high-scores.html";
+  highScores.forEach((score) => {
+    const li = document.createElement("li");
+    li.textContent = `${score.initials} - ${score.score}`;
+    highScoresList.appendChild(li);
+  });
 }
 
-// Attach event listeners
+
+// Event listeners
 startButton.addEventListener("click", startQuiz);
-saveScoreButton.addEventListener("click", saveScore);
+saveScoreButton.addEventListener("submit", saveScore);
