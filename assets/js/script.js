@@ -56,7 +56,7 @@ const timerEl = document.querySelector("#timer");
 const messageEl = document.querySelector("#message");
 const initialsInput = document.querySelector("#initials");
 const saveScoreButton = document.querySelector("#save-score-submit");
-const highScores = document.querySelector("#high-scores-list");
+const highScoresLi = document.querySelector("#high-scores-list");
 const saveScoreContainer = document.querySelector("#save-score-container");
 const scoreEl = document.querySelector("#score");
 const highScoresContainer = document.querySelector("#high-scores-container");
@@ -152,16 +152,17 @@ function saveScore(event) {
     return;
   }
 
-  JSON.parse(localStorage.setItem("highScores", initials, score)) || [];
+  let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
-  localStorage.stringify(("highScores", JSON.stringify(highScores)));
+  highScores.push({initials: initials, score: score});
+
+  localStorage.setItem("highScores", JSON.stringify(highScores));
 
   showHighScores();
 }
 
 // Show High Scores
 function showHighScores() {
-  highScoresContainer.classList.remove("hide");
   saveScoreContainer.classList.add("hide");
 
   let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
@@ -172,7 +173,7 @@ function showHighScores() {
 
   highScores.forEach((score) => {
     const li = document.createElement("li");
-    li.textContent = `${score.initials} - ${score.score}`;
+    li.textContent = `${score.initials.toUpperCase()} - ${score.score}`;
     highScoresList.appendChild(li);
   });
 }
@@ -180,4 +181,5 @@ function showHighScores() {
 
 // Event listeners
 startButton.addEventListener("click", startQuiz);
-saveScoreButton.addEventListener("submit", saveScore);
+saveScoreButton.addEventListener("click", saveScore);
+window.addEventListener('load', showHighScores)
