@@ -115,7 +115,7 @@ function handleAnswer(event) {
   } else {
     messageEl.textContent = "Incorrect! Time has been reduced!";
 
-    time -= 10;
+    time -= 15;
     if (time < 0) {
       time = 0;
     }

@@ -10,7 +10,7 @@ To get started, use this link: [Website](https://lohmarr.github.io/JS-Quiz-Game-
 
 * Click on the "Start Quiz" button to begin the game.
 * Each question has multiple-choice answers, select the answer you think is correct.
-* If you select the wrong answer, 10 seconds will be deducted from your time.
+* If you select the wrong answer, 15 seconds will be deducted from your time.
 * The game ends when all questions have been answered, or time runs out.
 * After completing the quiz, you will be prompted to enter your initials to save your score.
 
