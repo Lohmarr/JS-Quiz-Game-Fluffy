@@ -10,7 +10,7 @@ h1, h2, #start-container {
 
 /* Quiz container styling */
 
-  #quiz-container {
+  #quiz-container, #play-agn-btn {
     margin: 20px auto;
     max-width: 600px;
     text-align: center;
@@ -71,7 +71,8 @@ h1, h2, #start-container {
     margin: 10px auto;
     padding: 10px 20px;
   }
-  
+
+/* High score styling */
   #high-scores-container {
     margin-top: 30px;
   }

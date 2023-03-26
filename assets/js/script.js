@@ -61,7 +61,7 @@ const saveScoreContainer = document.querySelector("#save-score-container");
 const scoreEl = document.querySelector("#score");
 const highScoresContainer = document.querySelector("#high-scores-container");
 const highScoresList = document.querySelector("#high-scores-list");
-
+const playAgain = document.querySelector('#play-agn-btn')
 // Start quiz
 function startQuiz() {
   startButton.classList.add("hide");
@@ -159,6 +159,7 @@ function saveScore(event) {
   localStorage.setItem("highScores", JSON.stringify(highScores));
 
   showHighScores();
+  refreshOption();
 }
 
 // Show High Scores
@@ -178,8 +179,15 @@ function showHighScores() {
   });
 }
 
+function refreshOption() {
+  playAgain.classList.remove("hide")
+}
+
 
 // Event listeners
 startButton.addEventListener("click", startQuiz);
 saveScoreButton.addEventListener("click", saveScore);
+playAgain.addEventListener('click', function() {
+  location.reload()
+})
 window.addEventListener('load', showHighScores)
